@@ -1,4 +1,4 @@
-package com.example.enroute;
+package com.transport.enroute;
 
 import org.junit.Test;
 
