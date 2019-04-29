@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/etStopNumber"
+        android:layout_width="250sp"
+        android:layout_height="40sp"
+        android:layout_marginTop="50sp"
+        android:background="@color/colorPrimaryDark"
+        android:hint="Email Address"
+        android:maxLines="1"
+        android:inputType="text"
+        android:textColorHint="#fff"
+        android:textColor="#fff"
+        android:paddingLeft="12dp"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:id="@+id/btnBus"
+        android:layout_width="250sp"
+        android:layout_marginTop="50sp"
+        android:background="@color/colorPrimaryDark"
+        android:layout_height="40sp"
+        android:text="Buses"
+        android:textColor="#FFF"
+        android:textAlignment="center"
+        android:paddingTop="8dp"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:id="@+id/results"
+        android:layout_width="250sp"
+        android:layout_height="400sp"
+        android:layout_marginTop="50sp"
+        android:background="@color/colorPrimaryDark"
+        android:layout_gravity="center"
+        android:textColor="#FFF"
+        android:paddingTop="8dp"
+        android:paddingLeft="8dp"
+        android:text="Buses"/>
+
+</LinearLayout>
