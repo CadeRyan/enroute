@@ -1,21 +1,17 @@
-package com.example.bustest;
+package com.example.enroute;
 
-import android.app.ListActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -72,10 +68,6 @@ public class Home extends AppCompatActivity {
                         busTimes += tmp.getElementsByTagName("route").item(0).getTextContent() + "    ";
                         busTimes += tmp.getElementsByTagName("duetime").item(0).getTextContent() + "\n";
                     }
-
-//                    for (int i = 0; i < res.size(); i ++){
-//                        busTimes += res.get(i) + "\n";
-//                    }
 
                     times.setText(busTimes);
 
