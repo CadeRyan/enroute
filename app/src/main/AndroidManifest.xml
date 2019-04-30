@@ -20,6 +20,14 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".StopSearch">
+        </activity>
+
+        <activity
+            android:name=".Favourites">
+        </activity>
+
     </application>
 
 

@@ -27,4 +27,16 @@
         android:paddingTop="8dp"
         android:layout_gravity="center"/>
 
+    <TextView
+        android:id="@+id/btnMap"
+        android:layout_width="250sp"
+        android:layout_marginTop="50sp"
+        android:background="@color/colorPrimaryDark"
+        android:layout_height="40sp"
+        android:text="Map"
+        android:textColor="#FFF"
+        android:textAlignment="center"
+        android:paddingTop="8dp"
+        android:layout_gravity="center"/>
+
 </LinearLayout>
