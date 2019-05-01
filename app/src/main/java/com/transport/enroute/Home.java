@@ -1,25 +1,38 @@
 package com.transport.enroute;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
+import org.xml.sax.Attributes;
+import org.xml.sax.ContentHandler;
+import org.xml.sax.DocumentHandler;
+import org.xml.sax.InputSource;
+import org.xml.sax.Locator;
 import org.xml.sax.SAXException;
+import org.xml.sax.XMLReader;
+import org.xml.sax.helpers.DefaultHandler;
+import org.xml.sax.helpers.XMLReaderFactory;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
 
 public class Home extends AppCompatActivity {
 
-    TextView times;
-    TextView btn;
+    TextView favourites;
+    TextView searchByStop;
     EditText stopNumber;
 
     @Override
@@ -27,56 +40,25 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        times = findViewById(R.id.results);
-        btn = findViewById(R.id.btnBus);
+        searchByStop = findViewById(R.id.btnSearchByStop);
+        favourites = findViewById(R.id.btnFavs);
         stopNumber = findViewById(R.id.etStopNumber);
 
-        btn.setOnClickListener(new View.OnClickListener() {
+        searchByStop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                GetBusTimes(String.valueOf(stopNumber.getText()));
+                Intent startSearch = new Intent(Home.this, StopSearch.class);
+                startActivity(startSearch);
             }
         });
-    }
 
-    private void GetBusTimes(final String stopNumber){
-
-        new Thread() {
+        favourites.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void run() {
+            public void onClick(View v) {
 
-                try{
-                    URL url = new URL("https://data.smartdublin.ie/cgi-bin/rtpi/realtimebusinformation?stopid=" + stopNumber + "&format=xml");
-
-                    DocumentBuilderFactory documentBuildFactory = DocumentBuilderFactory.newInstance();
-                    DocumentBuilder documentBuilder = documentBuildFactory.newDocumentBuilder();
-                    Document doc = documentBuilder.parse(url.openStream());
-
-                    NodeList results = doc.getElementsByTagName("result");
-
-                    System.out.println(results.getLength());
-                    ArrayList<String> res = new ArrayList<>();
-                    String busTimes = "";
-
-                    for (int i = 0; i < results.getLength(); i ++){
-
-                        //System.out.println(results.item(i).getTextContent());
-
-                        Element tmp = (Element) results.item(i);
-                        res.add(tmp.getElementsByTagName("duetime").item(0).getTextContent());
-                        busTimes += tmp.getElementsByTagName("route").item(0).getTextContent() + "    ";
-                        busTimes += tmp.getElementsByTagName("duetime").item(0).getTextContent() + "\n";
-                    }
-
-                    times.setText(busTimes);
-
-                }catch (ParserConfigurationException | IOException e) {
-                    e.printStackTrace();
-                } catch (SAXException e) {
-                    e.printStackTrace();
-                }
+                Toast.makeText(Home.this, "not a thing yet", Toast.LENGTH_SHORT);
             }
-        }.start();
+        });
     }
 }
