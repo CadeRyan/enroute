@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#bbb">
 
     <EditText
         android:id="@+id/etStopNumber"
@@ -10,7 +11,7 @@
         android:layout_marginRight="60sp"
         android:layout_height="40sp"
         android:layout_marginTop="50sp"
-        android:background="@color/colorPrimaryDark"
+        android:background="#444"
         android:hint="Stop Number"
         android:maxLines="1"
         android:inputType="text"
@@ -25,7 +26,7 @@
         android:layout_marginLeft="60sp"
         android:layout_marginRight="60sp"
         android:layout_marginTop="50sp"
-        android:background="@color/colorPrimaryDark"
+        android:background="#444"
         android:layout_height="40sp"
         android:text="Search"
         android:textColor="#FFF"
@@ -50,14 +51,14 @@
                 android:layout_height="400sp"
                 android:layout_width="match_parent"
                 android:layout_marginTop="50sp"
-                android:layout_marginLeft="45sp"
-                android:layout_marginRight="20sp"
-                android:background="@color/colorPrimaryDark"
-                android:layout_gravity="center"
+                android:layout_marginLeft="60sp"
+                android:layout_marginRight="2sp"
+                android:background="#444"
+                android:layout_gravity="right"
                 android:textColor="#FFF"
                 android:paddingTop="8dp"
                 android:paddingLeft="8dp"
-                android:text="Buses"/>
+                android:text="Route"/>
 
         </LinearLayout>
 
@@ -72,14 +73,14 @@
                 android:layout_height="400sp"
                 android:layout_width="match_parent"
                 android:layout_marginTop="50sp"
-                android:layout_marginLeft="20sp"
-                android:layout_marginRight="45sp"
-                android:background="@color/colorPrimaryDark"
-                android:layout_gravity="center"
+                android:layout_marginLeft="2sp"
+                android:layout_marginRight="60sp"
+                android:background="#444"
+                android:layout_gravity="left"
                 android:textColor="#FFF"
                 android:paddingTop="8dp"
                 android:paddingLeft="8dp"
-                android:text="Times"/>
+                android:text="Due Time"/>
 
         </LinearLayout>
 

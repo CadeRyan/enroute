@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#bbb">
 
     <TextView
         android:id="@+id/btnSearchByStop"
         android:layout_width="250sp"
         android:layout_marginTop="150sp"
-        android:background="@color/colorPrimaryDark"
+        android:background="#444"
         android:layout_height="40sp"
         android:text="Search by stop number"
         android:textColor="#FFF"
@@ -19,7 +20,7 @@
         android:id="@+id/btnSearchByRoute"
         android:layout_width="250sp"
         android:layout_marginTop="50sp"
-        android:background="@color/colorPrimaryDark"
+        android:background="#444"
         android:layout_height="40sp"
         android:text="Search By Route"
         android:textColor="#FFF"
@@ -31,7 +32,7 @@
         android:id="@+id/btnFavs"
         android:layout_width="250sp"
         android:layout_marginTop="50sp"
-        android:background="@color/colorPrimaryDark"
+        android:background="#444"
         android:layout_height="40sp"
         android:text="Favourites"
         android:textColor="#FFF"
@@ -43,7 +44,7 @@
         android:id="@+id/btnMap"
         android:layout_width="250sp"
         android:layout_marginTop="50sp"
-        android:background="@color/colorPrimaryDark"
+        android:background="#444"
         android:layout_height="40sp"
         android:text="Map"
         android:textColor="#FFF"

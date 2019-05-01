@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="5">
+    android:weightSum="5"
+    android:background="#bbb">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,7 +15,7 @@
             android:id="@+id/btnAddNewFav"
             android:layout_width="250sp"
             android:layout_marginTop="50sp"
-            android:background="@color/colorPrimaryDark"
+            android:background="#444"
             android:layout_height="40sp"
             android:text="Add New Favourite"
             android:textColor="#FFF"
@@ -35,17 +36,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/btnFav"
-                android:layout_width="250sp"
-                android:layout_marginTop="50sp"
-                android:background="@color/colorPrimaryDark"
-                android:layout_height="40sp"
-                android:text="Favourites"
-                android:textColor="#FFF"
-                android:textAlignment="center"
-                android:paddingTop="8dp"
-                android:layout_gravity="center"/>
+            //add fav views to here
 
         </LinearLayout>
 

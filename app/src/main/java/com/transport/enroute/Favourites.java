@@ -1,28 +1,27 @@
 package com.transport.enroute;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
-
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import android.widget.Toast;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 public class Favourites extends AppCompatActivity {
 
     TextView addNewFav;
+    ArrayList<Favourite> favsList;
     TextView[] favs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favourites);
-
-        //tmp
-        favs = new TextView[0];
-        //
 
         addNewFav = findViewById(R.id.btnAddNewFav);
         FetchFavs();
@@ -35,10 +34,7 @@ public class Favourites extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                //launches popup for the user to enter stop number and friendly name
-
-                System.out.println("Add new favourite");
-
+                AddNewFavourite();
             }
         });
 
@@ -71,35 +67,72 @@ public class Favourites extends AppCompatActivity {
 
     private void FetchFavs(){
 
-        NodeList favourites = null;
-        //retrieve favourites from xml in storage and store here in memory as a NodeList favourites
-        
-        //example of what the xml file containing the favs data should look like:
-
-        //<favourites>
-        //  <favourite>
-        //      <stopNumber>4647</stopNumber>
-        //      <friendlyName>Tallaght to town</friendlyName>
-        //  </favourite>
-        //  <favourite>
-        //      <stopNumber>3372</stopNumber>
-        //      <friendlyName>Lucan Village</friendlyName>
-        //  </favourite>
-        //</favourites>
-
-        SetFavs(favourites);
+        loadFavourites();
+        SetFavs();
     }
 
-    private void SetFavs(NodeList favourites){
+    private void SetFavs(){
 
-        //uses NodeList favourites to parse the friendly names and set the params of the favs TextView[]
-        //tags each TextView in favs with its stopNumber eg. tags[i].setTag(String stopNumber)
+        //tmp
+        favs = new TextView[0];
+        //
+
+        //set the values of the TextView[] favs using ArrayList<Favourite> favsList
 
         AddFavsToScreen();
+
     }
 
     private void AddFavsToScreen(){
 
         //puts all the TextViews in TextView[] favs on screen
+        //tmp
+        if(favsList != null && !favsList.isEmpty()){
+            String res = "";
+            for(int i = 0; i < favsList.size(); i ++){
+
+                res += favsList.get(i).getFriendlyName() + "\n"
+                        + favsList.get(i).getStopNumber() + "\n";
+
+            }
+
+            Toast.makeText(this, res, Toast.LENGTH_SHORT).show();
+        }
+        //
+    }
+
+    private void saveFavourites(){
+
+        SharedPreferences sharedPrefs = getSharedPreferences("shared preferences", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(favsList);
+        editor.putString("favourite stops", json);
+        editor.apply();
+    }
+
+    private void loadFavourites(){
+
+        SharedPreferences sharedPrefs = getSharedPreferences("shared preferences", MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPrefs.getString("favourite stops", null);
+        Type type = new TypeToken<ArrayList<Favourite>>(){}.getType();
+        favsList = gson.fromJson(json, type);
+
+        if(favsList == null){
+            favsList = new ArrayList<>();
+        }
+    }
+
+    private void AddNewFavourite() {
+
+        //provide popup for user to enter details
+        //tmp
+        favsList.add(new Favourite("Lucan Village", "3372"));
+        favsList.add(new Favourite("Tallaght", "4647"));
+        //
+
+        saveFavourites();
+        FetchFavs();
     }
 }
