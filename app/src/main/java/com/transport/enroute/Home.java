@@ -11,6 +11,7 @@ public class Home extends AppCompatActivity {
 
     TextView favourites;
     TextView searchByStop;
+    TextView searchByRoute;
     EditText stopNumber;
 
     @Override
@@ -19,6 +20,7 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         searchByStop = findViewById(R.id.btnSearchByStop);
+        searchByRoute = findViewById(R.id.btnSearchByRoute);
         favourites = findViewById(R.id.btnFavs);
         stopNumber = findViewById(R.id.etStopNumber);
 
@@ -27,6 +29,15 @@ public class Home extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent startSearch = new Intent(Home.this, StopSearch.class);
+                startActivity(startSearch);
+            }
+        });
+
+        searchByRoute.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent startSearch = new Intent(Home.this, RouteSearch.class);
                 startActivity(startSearch);
             }
         });

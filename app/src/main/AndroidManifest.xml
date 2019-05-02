@@ -28,6 +28,10 @@
             android:name=".Favourites">
         </activity>
 
+        <activity
+            android:name=".RouteSearch">
+        </activity>
+
     </application>
 
 
