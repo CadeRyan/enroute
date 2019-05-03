@@ -64,7 +64,9 @@ public class Favourites extends AppCompatActivity {
 
                         //this will provide te user with a popup to delete this from their favourites
 
-                        System.out.println("long press");
+                        removeFavourite(v);
+                        refresh();
+
                         return true;
                     }
                 });
@@ -80,10 +82,10 @@ public class Favourites extends AppCompatActivity {
 
     private void SetFavs() {
 
-        if (!favsList.isEmpty()) {
+        LinearLayout linearLayout = findViewById(R.id.favouritesLL);
+        linearLayout.removeAllViews();
 
-            LinearLayout linearLayout = findViewById(R.id.favouritesLL);
-            linearLayout.removeAllViews();
+        if (!favsList.isEmpty()) {
 
             favs = new TextView[favsList.size()];
             for (int i = 0; i < favsList.size(); i++) {
@@ -135,6 +137,22 @@ public class Favourites extends AppCompatActivity {
         favsList.add(new Favourite("Lucan Village", "3372"));
         favsList.add(new Favourite("Tallaght", "4647"));
         //
+
+        saveFavourites();
+    }
+
+    private void removeFavourite(View v) {
+
+        TextView tmp = (TextView) v;
+
+        for(int i = 0; i < favsList.size(); i ++){
+            if(favsList.get(i).getStopNumber().equals(tmp.getTag().toString())
+                && favsList.get(i).getFriendlyName().equals(tmp.getText().toString())){
+                favsList.remove(i);
+                saveFavourites();
+                break;
+            }
+        }
 
         saveFavourites();
     }
