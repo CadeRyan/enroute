@@ -88,6 +88,7 @@ public class Favourites extends AppCompatActivity {
             favs = new TextView[favsList.size()];
             for (int i = 0; i < favsList.size(); i++) {
 
+                //can someone please fix the params and margins and padding, I don't know know to do this properly
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 120);
                 params.setMargins(180, 60, 180, 0);
 
