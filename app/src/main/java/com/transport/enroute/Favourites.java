@@ -1,10 +1,13 @@
 package com.transport.enroute;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.google.gson.Gson;
@@ -35,33 +38,37 @@ public class Favourites extends AppCompatActivity {
             public void onClick(View v) {
 
                 AddNewFavourite();
+                refresh();
             }
         });
 
-        for(int i = 0; i < favs.length; i ++){
+        if (favs != null) {
 
-            favs[i].setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+            for(int i = 0; i < favs.length; i ++){
 
-                    Intent startSearch = new Intent(Favourites.this, StopSearch.class);
-                    startSearch.putExtra("stop_number", v.getTag().toString());
-                    startActivity(startSearch);
+                favs[i].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 
-                    System.out.println("short press");
-                }
-            });
+                        Intent startSearch = new Intent(Favourites.this, StopSearch.class);
+                        startSearch.putExtra("stop_number", v.getTag().toString());
+                        startActivity(startSearch);
 
-            favs[i].setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
+                        System.out.println("short press");
+                    }
+                });
 
-                    //this will provide te user with a popup to delete this from their favourites
+                favs[i].setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
 
-                    System.out.println("long press");
-                    return true;
-                }
-            });
+                        //this will provide te user with a popup to delete this from their favourites
+
+                        System.out.println("long press");
+                        return true;
+                    }
+                });
+            }
         }
     }
 
@@ -71,34 +78,30 @@ public class Favourites extends AppCompatActivity {
         SetFavs();
     }
 
-    private void SetFavs(){
+    private void SetFavs() {
 
-        //tmp
-        favs = new TextView[0];
-        //
+        if (!favsList.isEmpty()) {
 
-        //set the values of the TextView[] favs using ArrayList<Favourite> favsList
+            LinearLayout linearLayout = findViewById(R.id.favouritesLL);
+            linearLayout.removeAllViews();
 
-        AddFavsToScreen();
+            favs = new TextView[favsList.size()];
+            for (int i = 0; i < favsList.size(); i++) {
 
-    }
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 120);
+                params.setMargins(180, 60, 180, 0);
 
-    private void AddFavsToScreen(){
+                favs[i] = new TextView(this);
+                favs[i].setText(favsList.get(i).getFriendlyName());
+                favs[i].setTag(favsList.get(i).getStopNumber());
+                favs[i].setLayoutParams(params);
+                favs[i].setBackgroundColor(Color.parseColor("#444444"));
+                favs[i].setTextColor(Color.parseColor("#FFFFFF"));
+                favs[i].setPadding(40, 25, 0, 0);
 
-        //puts all the TextViews in TextView[] favs on screen
-        //tmp
-        if(favsList != null && !favsList.isEmpty()){
-            String res = "";
-            for(int i = 0; i < favsList.size(); i ++){
-
-                res += favsList.get(i).getFriendlyName() + "\n"
-                        + favsList.get(i).getStopNumber() + "\n";
-
+                linearLayout.addView(favs[i]);
             }
-
-            Toast.makeText(this, res, Toast.LENGTH_SHORT).show();
         }
-        //
     }
 
     private void saveFavourites(){
@@ -133,6 +136,11 @@ public class Favourites extends AppCompatActivity {
         //
 
         saveFavourites();
+    }
+
+    private void refresh() {
+
         FetchFavs();
+        SetFavsOnClick();
     }
 }

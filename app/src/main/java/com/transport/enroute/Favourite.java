@@ -2,8 +2,8 @@ package com.transport.enroute;
 
 public class Favourite {
 
-    String friendlyName;
-    String stopNumber;
+    private String friendlyName;
+    private String stopNumber;
 
     public Favourite(String name, String number){
 

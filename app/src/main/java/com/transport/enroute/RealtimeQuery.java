@@ -1,5 +1,6 @@
 package com.transport.enroute;
 
+import android.widget.EditText;
 import android.widget.TextView;
 
 import org.w3c.dom.Element;
@@ -14,13 +15,15 @@ import javax.xml.parsers.ParserConfigurationException;
 
 public class RealtimeQuery {
 
-    public static void GetBusTimes(final String stopNumber, final TextView route, final TextView times){
+    public static void GetBusTimes(final String stopNumber, final TextView route, final TextView times, final EditText searchBar){
 
         new Thread() {
             @Override
             public void run() {
 
                 try{
+                    searchBar.setText(stopNumber);
+
                     URL url = new URL("https://data.smartdublin.ie/cgi-bin/rtpi/realtimebusinformation?stopid=" + stopNumber + "&format=xml");
                     NodeList results = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(url.openStream()).getElementsByTagName("result");
 

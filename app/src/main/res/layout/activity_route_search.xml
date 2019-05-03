@@ -17,8 +17,7 @@
         android:inputType="text"
         android:textColorHint="#fff"
         android:textColor="#fff"
-        android:paddingLeft="12dp"
-        android:layout_gravity="center"/>
+        android:paddingLeft="12dp"/>
 
     <TextView
         android:id="@+id/btnSearch"
@@ -31,7 +30,6 @@
         android:text="Search"
         android:textColor="#FFF"
         android:textAlignment="center"
-        android:paddingTop="8dp"
-        android:layout_gravity="center"/>
+        android:paddingTop="8dp"/>
 
 </LinearLayout>

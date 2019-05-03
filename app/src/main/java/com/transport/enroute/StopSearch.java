@@ -26,7 +26,7 @@ public class StopSearch extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
             if(extras.getString("stop_number") != null){
-                RealtimeQuery.GetBusTimes(extras.getString("stop_number"), buses, times);
+                RealtimeQuery.GetBusTimes(extras.getString("stop_number"), buses, times, stopNumber);
             }
         }
 
@@ -34,7 +34,7 @@ public class StopSearch extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                RealtimeQuery.GetBusTimes(String.valueOf(stopNumber.getText()), buses, times);
+                RealtimeQuery.GetBusTimes(String.valueOf(stopNumber.getText()), buses, times, stopNumber);
             }
         });
     }
