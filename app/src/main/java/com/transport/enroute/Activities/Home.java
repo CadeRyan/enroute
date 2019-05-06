@@ -13,6 +13,7 @@ public class Home extends AppCompatActivity {
     TextView favourites;
     TextView searchByStop;
     TextView searchByRoute;
+    TextView map;
     EditText stopNumber;
 
     @Override
@@ -23,6 +24,7 @@ public class Home extends AppCompatActivity {
         searchByStop = findViewById(R.id.btnSearchByStop);
         searchByRoute = findViewById(R.id.btnSearchByRoute);
         favourites = findViewById(R.id.btnFavs);
+        map = findViewById(R.id.btnMap);
         stopNumber = findViewById(R.id.etStopNumber);
 
         searchByStop.setOnClickListener(new View.OnClickListener() {
@@ -49,6 +51,15 @@ public class Home extends AppCompatActivity {
 
                 Intent startFavs = new Intent(Home.this, Favourites.class);
                 startActivity(startFavs);
+            }
+        });
+
+        map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent startMap = new Intent(Home.this, Map.class);
+                startActivity(startMap);
             }
         });
     }

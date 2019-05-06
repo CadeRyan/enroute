@@ -12,6 +12,10 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
 
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyDlMqMklLecEjG2-3MCzPYIkHtAd4X_ZLs"/>
+
         <activity
             android:name=".Activities.Home">
             <intent-filter >
@@ -30,6 +34,10 @@
 
         <activity
             android:name=".Activities.RouteSearch">
+        </activity>
+
+        <activity
+            android:name=".Activities.Map">
         </activity>
 
     </application>
