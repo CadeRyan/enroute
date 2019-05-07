@@ -28,7 +28,7 @@ public class RouteSearch extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                RealtimeQuery.GetRouteInfo(String.valueOf(routeNumber.getText()), test);
+                RealtimeQuery.GetRouteInfo(String.valueOf(routeNumber.getText()));
             }
         });
     }
