@@ -21,7 +21,7 @@ private String stopid;
 @SerializedName("timestamp")
 @Expose
 private String timestamp;
-@SerializedName("realtimeResults")
+@SerializedName("results")
 @Expose
 private List<RealtimeResult> realtimeResults = null;
 

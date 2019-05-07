@@ -12,7 +12,7 @@ import com.transport.enroute.RealtimeQuery;
 public class RouteSearch extends AppCompatActivity {
 
     TextView btn;
-
+    TextView test;
     EditText routeNumber;
 
     @Override
@@ -21,13 +21,14 @@ public class RouteSearch extends AppCompatActivity {
         setContentView(R.layout.activity_route_search);
 
         btn = findViewById(R.id.btnSearch);
+        test = findViewById(R.id.testBox);
         routeNumber = findViewById(R.id.etRouteNumber);
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                RealtimeQuery.GetRouteInfo(String.valueOf(routeNumber.getText()));
+                RealtimeQuery.GetRouteInfo(String.valueOf(routeNumber.getText()), test);
             }
         });
     }

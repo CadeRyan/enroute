@@ -59,7 +59,7 @@ public class RealtimeQuery {
         }.start();
     }
 
-    public static void GetRouteInfo(final String routeNumber){
+    public static void GetRouteInfo(final String routeNumber, final TextView test){
 
         new Thread() {
             @Override
@@ -73,10 +73,14 @@ public class RealtimeQuery {
                     BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
                     RouteInfo routeInfo = gson.fromJson(br, RouteInfo.class);
 
+                    // test display to show query working-------------------------------------
+                    String testString = "";
                     for (Stop stop : routeInfo.getJourneys().get(0).getStops()){
 
-                        System.out.println(stop.getStopid());
+                        testString += stop.getStopid() + " ,";
                     }
+                    System.out.println(testString);
+                    //------------------------------------------------------------------------
 
                 }catch (IOException e) {
                     e.printStackTrace();
