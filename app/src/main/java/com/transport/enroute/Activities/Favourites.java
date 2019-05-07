@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -13,6 +14,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.transport.enroute.Favourite;
 import com.transport.enroute.R;
+import com.transport.enroute.RealtimeQuery;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -22,6 +24,7 @@ public class Favourites extends AppCompatActivity {
     TextView addNewFav;
     ArrayList<Favourite> favsList;
     TextView[] favs;
+    EditText searchBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +32,20 @@ public class Favourites extends AppCompatActivity {
         setContentView(R.layout.activity_favourites);
 
         addNewFav = findViewById(R.id.btnAddNewFav);
+        searchBar = findViewById(R.id.etStopNumberFavourite);
         FetchFavs();
         SetFavsOnClick();
+
+        Bundle extras = getIntent().getExtras();
+        if(extras != null) {
+            if(extras.getString("new_favourite") != null){
+
+                String extraString = extras.getString("new_favourite");
+                AddNewFavourite(extraString);
+                refresh();
+                //add new fav
+            }
+        }
     }
 
     private void SetFavsOnClick(){
@@ -39,8 +54,11 @@ public class Favourites extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                AddNewFavourite();
-                refresh();
+                if(!searchBar.getText().equals("") && searchBar.getText() != null){
+
+                    AddNewFavourite(String.valueOf(searchBar.getText()));
+                    refresh();
+                }
             }
         });
 
@@ -55,8 +73,6 @@ public class Favourites extends AppCompatActivity {
                         Intent startSearch = new Intent(Favourites.this, StopSearch.class);
                         startSearch.putExtra("stop_number", v.getTag().toString());
                         startActivity(startSearch);
-
-                        System.out.println("short press");
                     }
                 });
 
@@ -132,12 +148,10 @@ public class Favourites extends AppCompatActivity {
         }
     }
 
-    private void AddNewFavourite() {
+    private void AddNewFavourite(String stopNumber) {
 
-        //provide popup for user to enter details
         //tmp
-        favsList.add(new Favourite("Lucan Village", "3372"));
-        favsList.add(new Favourite("Tallaght", "4647"));
+        favsList.add(new Favourite(stopNumber, stopNumber));
         //
 
         saveFavourites();
