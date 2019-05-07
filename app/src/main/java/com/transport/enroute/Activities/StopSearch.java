@@ -1,10 +1,13 @@
-package com.transport.enroute;
+package com.transport.enroute.Activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.transport.enroute.R;
+import com.transport.enroute.RealtimeQuery;
 
 public class StopSearch extends AppCompatActivity {
 

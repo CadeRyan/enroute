@@ -1,6 +1,5 @@
-package com.transport.enroute;
+package com.transport.enroute.Activities;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -9,9 +8,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.transport.enroute.Favourite;
+import com.transport.enroute.R;
+
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 

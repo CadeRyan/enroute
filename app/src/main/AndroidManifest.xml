@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".Home">
+            android:name=".Activities.Home">
             <intent-filter >
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -21,15 +21,15 @@
         </activity>
 
         <activity
-            android:name=".StopSearch">
+            android:name=".Activities.StopSearch">
         </activity>
 
         <activity
-            android:name=".Favourites">
+            android:name=".Activities.Favourites">
         </activity>
 
         <activity
-            android:name=".RouteSearch">
+            android:name=".Activities.RouteSearch">
         </activity>
 
     </application>

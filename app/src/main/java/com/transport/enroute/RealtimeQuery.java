@@ -5,20 +5,10 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.Reader;
 import java.net.URL;
-import java.util.List;
-
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 
 public class RealtimeQuery {
 
@@ -40,7 +30,7 @@ public class RealtimeQuery {
                     String timesStr = "";
                     String busesStr = "";
 
-                    for (Result res : stopResult.getResults()){
+                    for (RealtimeResult res : stopResult.getRealtimeResults()){
 
                         busesStr += res.getRoute() + "\n";
                         String dueTime = res.getDuetime();
@@ -61,6 +51,32 @@ public class RealtimeQuery {
 
                     route.setText(busesStr);
                     times.setText(timesStr);
+
+                }catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+    }
+
+    public static void GetRouteInfo(final String routeNumber){
+
+        new Thread() {
+            @Override
+            public void run() {
+
+                try{
+
+                    URL url = new URL("https://data.smartdublin.ie/cgi-bin/rtpi/routeinformation?routeid=" + routeNumber + "&operator=bac&format=json");
+
+                    Gson gson = new Gson();
+                    BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
+                    RouteInfo routeInfo = gson.fromJson(br, RouteInfo.class);
+
+                    for (Stop stop : routeInfo.getJourneys().get(0).getStops()){
+
+                        System.out.println(stop.getStopid());
+                    }
 
                 }catch (IOException e) {
                     e.printStackTrace();

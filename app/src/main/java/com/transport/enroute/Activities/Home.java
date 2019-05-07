@@ -1,4 +1,4 @@
-package com.transport.enroute;
+package com.transport.enroute.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.transport.enroute.R;
 
 public class Home extends AppCompatActivity {
 

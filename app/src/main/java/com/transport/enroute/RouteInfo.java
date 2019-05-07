@@ -4,7 +4,7 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class StopRealTime {
+public class RouteInfo {
 
 @SerializedName("errorcode")
 @Expose
@@ -15,15 +15,15 @@ private String errormessage;
 @SerializedName("numberofresults")
 @Expose
 private Integer numberofresults;
-@SerializedName("stopid")
+@SerializedName("route")
 @Expose
-private String stopid;
+private String route;
 @SerializedName("timestamp")
 @Expose
 private String timestamp;
-@SerializedName("realtimeResults")
+@SerializedName("results")
 @Expose
-private List<RealtimeResult> realtimeResults = null;
+private List<Journey> journeys = null;
 
 public String getErrorcode() {
 return errorcode;
@@ -49,12 +49,12 @@ public void setNumberofresults(Integer numberofresults) {
 this.numberofresults = numberofresults;
 }
 
-public String getStopid() {
-return stopid;
+public String getRoute() {
+return route;
 }
 
-public void setStopid(String stopid) {
-this.stopid = stopid;
+public void setRoute(String route) {
+this.route = route;
 }
 
 public String getTimestamp() {
@@ -65,12 +65,12 @@ public void setTimestamp(String timestamp) {
 this.timestamp = timestamp;
 }
 
-public List<RealtimeResult> getRealtimeResults() {
-return realtimeResults;
+public List<Journey> getJourneys() {
+return journeys;
 }
 
-public void setRealtimeResults(List<RealtimeResult> realtimeResults) {
-this.realtimeResults = realtimeResults;
+public void setJourneys(List<Journey> journeys) {
+this.journeys = journeys;
 }
 
 }
