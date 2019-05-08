@@ -9,13 +9,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.transport.enroute.Favourite;
 import com.transport.enroute.R;
-import com.transport.enroute.RealtimeQuery;
-
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
