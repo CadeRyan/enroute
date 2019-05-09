@@ -59,7 +59,6 @@ public class StopSearch extends AppCompatActivity {
                 if(!inputText.equals("") && inputText != null){
 
                     Intent addToFavourites = new Intent(StopSearch.this, Favourites.class);
-
                     addToFavourites.putExtra("new_favourite", inputText);
                     startActivity(addToFavourites);
                 }

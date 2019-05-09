@@ -33,6 +33,15 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        Bundle extras = getIntent().getExtras();
+        if(extras != null) {
+            if(extras.get("route_name") != null){
+
+                String routeName = extras.getString("route_name");
+                new AsyncAddMarkers().execute(routeName);
+            }
+        }
     }
 
     @Override
@@ -40,9 +49,7 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
 
         mGoogleMap = googleMap;
         LatLng dublin = new LatLng(53.340083,-6.2600715);
-        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(dublin,15));
-
-        new AsyncAddMarkers().execute("25");
+        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(dublin,11));
     }
 
     private class AsyncAddMarkers extends AsyncTask<String, String, RouteInfo> {

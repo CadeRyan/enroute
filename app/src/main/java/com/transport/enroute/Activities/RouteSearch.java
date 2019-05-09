@@ -1,5 +1,6 @@
 package com.transport.enroute.Activities;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -20,24 +21,38 @@ import java.net.URL;
 
 public class RouteSearch extends AppCompatActivity {
 
-    TextView btn;
+    TextView btnSearch;
     TextView test;
+    TextView btnViewOnMap;
     EditText routeNumber;
+
+    RouteInfo searchedRoute;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_route_search);
 
-        btn = findViewById(R.id.btnSearch);
+        btnSearch = findViewById(R.id.btnSearch);
+        btnViewOnMap = findViewById(R.id.btnViewRouteOnMap);
         test = findViewById(R.id.testBox);
         routeNumber = findViewById(R.id.etRouteNumber);
 
-        btn.setOnClickListener(new View.OnClickListener() {
+        btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 new AsyncGetRouteInfo().execute(String.valueOf(routeNumber.getText()));
+            }
+        });
+        btnViewOnMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                btnViewOnMap.setVisibility(View.INVISIBLE);
+                Intent viewRouteOnMap = new Intent(RouteSearch.this, Map.class);
+                viewRouteOnMap.putExtra("route_name", searchedRoute.getRoute());
+                startActivity(viewRouteOnMap);
             }
         });
     }
@@ -73,6 +88,8 @@ public class RouteSearch extends AppCompatActivity {
 
                 stopIDs += stop.getStopid() + ", ";
             }
+            searchedRoute = route;
+            btnViewOnMap.setVisibility(View.VISIBLE);
             test.setText(stopIDs);
         }
     }

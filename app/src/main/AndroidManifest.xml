@@ -16,6 +16,8 @@
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyDlMqMklLecEjG2-3MCzPYIkHtAd4X_ZLs"/>
 
+        <uses-library android:name="org.apache.http.legacy" android:required="false" />
+
         <activity
             android:name=".Activities.Home">
             <intent-filter >
