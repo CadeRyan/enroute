@@ -10,8 +10,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.transport.enroute.R;
-import com.transport.enroute.RouteInfo;
-import com.transport.enroute.Stop;
+import com.transport.enroute.JSONObjects.RouteInfo;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -84,7 +83,7 @@ public class RouteSearch extends AppCompatActivity {
 
             String stopIDs = "";
 
-            for (Stop stop : route.getJourneys().get(0).getStops()){
+            for (RouteInfo.Journey.Stop stop : route.getJourneys().get(0).getStops()){
 
                 stopIDs += stop.getStopid() + ", ";
             }

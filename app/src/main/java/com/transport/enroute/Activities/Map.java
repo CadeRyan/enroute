@@ -3,7 +3,6 @@ package com.transport.enroute.Activities;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.LinearLayout;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -13,8 +12,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 import com.transport.enroute.R;
-import com.transport.enroute.RouteInfo;
-import com.transport.enroute.Stop;
+import com.transport.enroute.JSONObjects.RouteInfo;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -77,7 +75,7 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
         protected void onPostExecute(RouteInfo route) {
             super.onPostExecute(route);
 
-            for (Stop stop : route.getJourneys().get(0).getStops()){
+            for (RouteInfo.Journey.Stop stop : route.getJourneys().get(0).getStops()){
 
                 mGoogleMap.addMarker(new MarkerOptions().position
                         (new LatLng(Double.parseDouble(stop.getLatitude()), Double.parseDouble(stop.getLongitude())))

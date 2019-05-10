@@ -9,8 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import com.google.gson.Gson;
 import com.transport.enroute.R;
-import com.transport.enroute.RealtimeResult;
-import com.transport.enroute.StopRealTime;
+import com.transport.enroute.JSONObjects.StopRealTime;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -94,7 +93,7 @@ public class StopSearch extends AppCompatActivity {
             String timesStr = "";
             String busesStr = "";
 
-            for (RealtimeResult res : stop.getRealtimeResults()){
+            for (StopRealTime.RealtimeResult res : stop.getRealtimeResults()){
 
                 busesStr += res.getRoute() + "\n";
                 String dueTime = res.getDuetime();

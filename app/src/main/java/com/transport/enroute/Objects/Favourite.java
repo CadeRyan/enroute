@@ -1,4 +1,4 @@
-package com.transport.enroute;
+package com.transport.enroute.Objects;
 
 public class Favourite {
 
