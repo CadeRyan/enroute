@@ -7,11 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import com.google.gson.Gson;
 import com.transport.enroute.R;
 import com.transport.enroute.JSONObjects.RouteInfo;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -24,7 +22,6 @@ public class RouteSearch extends AppCompatActivity {
     TextView test;
     TextView btnViewOnMap;
     EditText routeNumber;
-
     RouteInfo searchedRoute;
 
     @Override

@@ -8,8 +8,15 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import com.google.gson.Gson;
+import com.transport.enroute.DirtyRTPI;
 import com.transport.enroute.R;
 import com.transport.enroute.JSONObjects.StopRealTime;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -37,7 +44,8 @@ public class StopSearch extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
             if(extras.getString("stop_number") != null){
-                new AsyncGetBusTimes().execute(extras.getString("stop_number"));
+                //new AsyncGetBusTimes().execute(extras.getString("stop_number"));
+                tmpDoThisInstead(extras.getString("stop_number"));
             }
         }
 
@@ -45,7 +53,8 @@ public class StopSearch extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                new AsyncGetBusTimes().execute(String.valueOf(stopNumber.getText()));
+                //new AsyncGetBusTimes().execute(String.valueOf(stopNumber.getText()));
+                tmpDoThisInstead(String.valueOf(stopNumber.getText()));
             }
         });
 
@@ -63,6 +72,11 @@ public class StopSearch extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void tmpDoThisInstead(String stopNumber){
+
+        new AsyncDirtyGetBusTimes().execute(stopNumber);
     }
 
     private class AsyncGetBusTimes extends AsyncTask<String, String, StopRealTime> {
@@ -114,6 +128,54 @@ public class StopSearch extends AppCompatActivity {
 
             buses.setText(busesStr);
             times.setText(timesStr);
+        }
+    }
+
+    private class AsyncDirtyGetBusTimes extends AsyncTask<String, String, DirtyRTPI> {
+
+        @Override
+        protected DirtyRTPI doInBackground(String... strings) {
+
+            try {
+                String stopNumber = strings[0];
+
+                Document doc = Jsoup.connect("http://www.rtpi.ie/text/WebDisplay.aspx?stopRef=" + stopNumber).get();
+                Elements parts = doc.getElementById("GridViewRTI").getElementsByClass("body-cell");
+
+                DirtyRTPI res = new DirtyRTPI();
+
+                for(int i = 0; i < parts.size(); i += 6){
+
+                    res.addRoute(parts.get(i).text());
+
+                    res.addDuetime(parts.get(i + 4).text());
+                }
+
+                return res;
+
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(DirtyRTPI res) {
+            super.onPostExecute(res);
+
+            String dirtyString1 = "";
+            String dirtyString2 = "";
+
+            for(int i = 0; i < res.getRoutes().size()-1; i ++){
+
+                dirtyString1 += res.getRoute(i) + "\n";
+                dirtyString2 += res.getDuetime(i) + "\n";
+            }
+
+            buses.setText(dirtyString1);
+            times.setText(dirtyString2);
         }
     }
 }
