@@ -44,6 +44,7 @@ public class StopSearch extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
             if(extras.getString("stop_number") != null){
+                
                 //new AsyncGetBusTimes().execute(extras.getString("stop_number"));
                 tmpDoThisInstead(extras.getString("stop_number"));
             }
@@ -53,8 +54,11 @@ public class StopSearch extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                //new AsyncGetBusTimes().execute(String.valueOf(stopNumber.getText()));
-                tmpDoThisInstead(String.valueOf(stopNumber.getText()));
+                if(stopNumber.getText() != null){
+
+                    //new AsyncGetBusTimes().execute(String.valueOf(stopNumber.getText()));
+                    tmpDoThisInstead(String.valueOf(stopNumber.getText()));
+                }
             }
         });
 
